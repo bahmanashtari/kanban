@@ -1,4 +1,5 @@
 import Card from './Card'
+import LikeButton from './LikeButton'
 
 const Task = props => {
 	return (
@@ -8,9 +9,7 @@ const Task = props => {
 				type='text'
 				placeholder='Description goes here ...'></textarea>
 			<div className='grid grid-flow-col grid-cols-2'>
-				<button className='p-1' type='button'>
-					Like
-				</button>
+				<LikeButton />
 				<button className='p-1' type='button'>
 					Delete
 				</button>
