@@ -7,3 +7,5 @@ const MainBoard = props => {
 		</div>
 	)
 }
+
+export default MainBoard

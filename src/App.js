@@ -1,6 +1,6 @@
 import './App.css'
 
-import MainBord from './components/MainBord'
+import MainBord from './components/MainBoard'
 
 function App() {
 	return (
