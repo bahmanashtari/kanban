@@ -5,7 +5,7 @@ const Task = props => {
 	return (
 		<Card>
 			<textarea
-				className='p-2'
+				className='p-2 rounded'
 				type='text'
 				placeholder='Description goes here ...'></textarea>
 			<div className='grid grid-flow-col grid-cols-2'>
