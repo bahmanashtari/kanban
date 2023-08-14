@@ -3,10 +3,18 @@ import Card from './Card'
 const Task = props => {
 	return (
 		<Card>
-			<div>This is a Task</div>
-			<input
+			<textarea
+				className='p-2'
 				type='text'
-				placeholder='task description goes here ...'></input>
+				placeholder='Description goes here ...'></textarea>
+			<div className='grid grid-flow-col grid-cols-2'>
+				<button className='p-1' type='button'>
+					Like
+				</button>
+				<button className='p-1' type='button'>
+					Delete
+				</button>
+			</div>
 		</Card>
 	)
 }
