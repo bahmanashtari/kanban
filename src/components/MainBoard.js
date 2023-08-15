@@ -23,6 +23,18 @@ const MainBoard = props => {
 		setSections(sectionNames)
 	}
 
+	const filterKeywordsHandler = keywords => {
+		console.log(keywords)
+	}
+
+	const filterSectionHandler = section => {
+		console.log(section)
+	}
+
+	const sortHandler = sortType => {
+		console.log(sortType)
+	}
+
 	const sectionsToShow = sections.map(section => (
 		<BoardSection name={section} />
 	))
@@ -34,7 +46,11 @@ const MainBoard = props => {
 					{boardName}
 				</section>
 				<section>
-					<Filters />
+					<Filters
+						keywords={filterKeywordsHandler}
+						sections={filterSectionHandler}
+						sort={sortHandler}
+					/>
 				</section>
 				<section className='h-full grid grid-flow-col'>
 					{sections.length > 0 && sectionsToShow}

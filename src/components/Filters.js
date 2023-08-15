@@ -6,6 +6,7 @@ const Filters = props => {
 				type='text'
 				id='search'
 				placeholder='start typing to filter tasks'
+				onChange={e => props.keywords(e.target.value)}
 			/>
 			<div>
 				<label className='text-white' htmlFor='section-filter'>
@@ -14,7 +15,8 @@ const Filters = props => {
 				<select
 					className='p-1 mx-2 rounded'
 					id='section-filter'
-					name='section-filter'>
+					name='section-filter'
+					onChange={e => props.sections(e.target.value)}>
 					<option value='' default>
 						All Sections
 					</option>
@@ -30,7 +32,8 @@ const Filters = props => {
 				<select
 					className='p-1 mx-2 rounded'
 					id='sort-by'
-					name='sort-by'>
+					name='sort-by'
+					onChange={e => props.sort(e.target.value)}>
 					<option value='createdDate' default>
 						Created Date
 					</option>
