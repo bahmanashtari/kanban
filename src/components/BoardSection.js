@@ -51,7 +51,7 @@ const BoardSection = props => {
 
 	return (
 		<section>
-			<h1 className='text-white'>Col Name</h1>
+			<h1 className='text-white'>{props.name}</h1>
 			<ul>{tasksToShow}</ul>
 			<button
 				type='button'

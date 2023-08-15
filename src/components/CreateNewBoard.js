@@ -2,9 +2,14 @@ import { useState } from 'react'
 
 const CreateNewBoard = props => {
 	const [sectionCount, setSectionCount] = useState(0)
+	const [boardName, setBoardName] = useState('')
 
 	const sectionCountChangeHandler = event => {
 		setSectionCount(event.target.value)
+	}
+
+	const boardNameChangeHandler = event => {
+		setBoardName(event.target.value)
 	}
 
 	const formSubmitHandler = event => {
@@ -13,6 +18,8 @@ const CreateNewBoard = props => {
 		const formJson = Object.fromEntries(
 			new FormData(event.target).entries()
 		)
+
+		props.onCreateBoard(formJson)
 	}
 
 	let sectionNameInputs = []
@@ -39,6 +46,19 @@ const CreateNewBoard = props => {
 			name='createNewBoard'
 			id='createNewBoard'
 			className='space-y-3'>
+			<section className='grid grid-flow-col grid-cols-2 space-x-20 p-5 bg-slate-800 rounded-xl'>
+				<label htmlFor='boardName' className='text-white'>
+					Enter the Board's name
+				</label>
+				<input
+					className='w-4/6 rounded text-center'
+					type='text'
+					name='boardName'
+					id='boardName'
+					value={boardName}
+					onChange={boardNameChangeHandler}
+				/>
+			</section>
 			<section className='grid grid-flow-col grid-cols-2 space-x-20 p-5 bg-slate-800 rounded-xl'>
 				<label htmlFor='sectionCount' className='text-white'>
 					How many sections do you want on your board?
