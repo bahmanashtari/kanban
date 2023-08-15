@@ -13,7 +13,6 @@ const CreateNewBoard = props => {
 		const formJson = Object.fromEntries(
 			new FormData(event.target).entries()
 		)
-		console.log(formJson)
 	}
 
 	let sectionNameInputs = []
@@ -21,14 +20,14 @@ const CreateNewBoard = props => {
 		sectionNameInputs = [
 			...sectionNameInputs,
 			<section className='grid grid-flow-col grid-cols-2 space-x-20 p-5 bg-slate-800 rounded-xl'>
-				<label htmlFor='sectionName' className='text-white'>
+				<label htmlFor={`sectionName_${i}`} className='text-white'>
 					Enter section's name
 				</label>
 				<input
 					className='w-3/12 rounded text-center'
 					type='text'
-					name='sectionName'
-					id='sectionName'
+					name={`sectionName_${i}`}
+					id={`sectionName_${i}`}
 				/>
 			</section>,
 		]
@@ -38,8 +37,9 @@ const CreateNewBoard = props => {
 		<form
 			onSubmit={formSubmitHandler}
 			name='createNewBoard'
-			id='createNewBoard'>
-			<section className='grid grid-flow-col grid-cols-3 space-x-20 p-5 bg-slate-800 rounded-xl'>
+			id='createNewBoard'
+			className='space-y-3'>
+			<section className='grid grid-flow-col grid-cols-2 space-x-20 p-5 bg-slate-800 rounded-xl'>
 				<label htmlFor='sectionCount' className='text-white'>
 					How many sections do you want on your board?
 				</label>
@@ -53,7 +53,10 @@ const CreateNewBoard = props => {
 				/>
 			</section>
 			{sectionCount !== 0 && sectionNameInputs}
-			<button type='submit' htmlFor='createNewBoard'>
+			<button
+				type='submit'
+				htmlFor='createNewBoard'
+				className='rounded-full my-5 p-2 bg-slate-600 hover:bg-slate-500'>
 				Create Board
 			</button>
 		</form>
