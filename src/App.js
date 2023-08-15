@@ -5,9 +5,7 @@ function App() {
 	return (
 		<div className='App'>
 			<header className='headercell'></header>
-			<body>
-				<MainBord />
-			</body>
+			<MainBord />
 		</div>
 	)
 }
