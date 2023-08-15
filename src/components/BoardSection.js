@@ -36,7 +36,6 @@ const BoardSection = props => {
 
 	const deleteHandler = taskId => {
 		const updatedTasks = tasks.filter(task => task.id !== taskId)
-		console.log(updatedTasks)
 		setTasks(updatedTasks)
 	}
 

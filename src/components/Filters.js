@@ -5,7 +5,8 @@ const Filters = props => {
 				className='p-1 mx-2 rounded'
 				type='text'
 				id='search'
-				placeholder='start typing to filter tasks'></input>
+				placeholder='start typing to filter tasks'
+			/>
 			<div>
 				<label className='text-white' htmlFor='section-filter'>
 					View Section
