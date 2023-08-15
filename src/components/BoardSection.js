@@ -10,7 +10,6 @@ const BoardSection = props => {
 		const newEmptyTask = { id: taskIdCount, description: '', likeCount: 0 }
 		setTasks(prevTasks => [...prevTasks, newEmptyTask])
 		setTaskIdCount(prevId => prevId + 1)
-		console.log(...tasks)
 	}
 
 	const descriptionHandler = (taskId, description) => {
@@ -19,24 +18,22 @@ const BoardSection = props => {
 				return { ...task, description: description }
 			}
 
-			return { ...task }
+			return task
 		})
 
 		setTasks(updatedTasks)
-		// console.log(...tasks)
 	}
 
 	const likeHandler = taskId => {
 		const updatedTasks = tasks.map(task => {
 			if (task.id === taskId) {
-				return { ...task, likeCount: (task.likeCount += 1) }
+				return { ...task, likeCount: task.likeCount + 1 }
 			}
 
-			return { ...tasks }
+			return task
 		})
 
 		setTasks(updatedTasks)
-		// console.log(...tasks)
 	}
 
 	const tasksToShow = tasks.map(task => (
