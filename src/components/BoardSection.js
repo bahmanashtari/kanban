@@ -20,7 +20,6 @@ const BoardSection = props => {
 
 			return task
 		})
-
 		setTasks(updatedTasks)
 	}
 
@@ -32,7 +31,12 @@ const BoardSection = props => {
 
 			return task
 		})
+		setTasks(updatedTasks)
+	}
 
+	const deleteHandler = taskId => {
+		const updatedTasks = tasks.filter(task => task.id !== taskId)
+		console.log(updatedTasks)
 		setTasks(updatedTasks)
 	}
 
@@ -42,6 +46,7 @@ const BoardSection = props => {
 			taskContent={task}
 			onDescription={descriptionHandler}
 			onLike={likeHandler}
+			onDelete={deleteHandler}
 		/>
 	))
 
