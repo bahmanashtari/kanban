@@ -6,42 +6,59 @@ const BoardSection = props => {
 	const [taskIdCount, setTaskIdCount] = useState(1)
 	const [tasks, setTasks] = useState([])
 
-	const addTaskHandler = () => {
-		setTasks(prevTasks => [
-			...prevTasks,
-			{ id: taskIdCount + 1, description: '', likes: 0 },
-		])
+	const addEmptyTask = () => {
+		const newEmptyTask = { id: taskIdCount, description: '', likeCount: 0 }
+		setTasks(prevTasks => [...prevTasks, newEmptyTask])
 		setTaskIdCount(prevId => prevId + 1)
-		console.log(taskIdCount)
+		console.log(...tasks)
 	}
 
-	const descriptionHandler = description => {
-		console.log(description)
+	const descriptionHandler = (taskId, description) => {
+		const updatedTasks = tasks.map(task => {
+			if (task.id === taskId) {
+				return { ...task, description: description }
+			}
+
+			return { ...task }
+		})
+
+		setTasks(updatedTasks)
+		// console.log(...tasks)
 	}
 
-	const likeHandler = () => {
-		console.log('like')
+	const likeHandler = taskId => {
+		const updatedTasks = tasks.map(task => {
+			if (task.id === taskId) {
+				return { ...task, likeCount: (task.likeCount += 1) }
+			}
+
+			return { ...tasks }
+		})
+
+		setTasks(updatedTasks)
+		// console.log(...tasks)
 	}
 
 	const tasksToShow = tasks.map(task => (
 		<Task
+			taskKey={task.id}
 			taskContent={task}
-			onLike={likeHandler}
 			onDescription={descriptionHandler}
+			onLike={likeHandler}
 		/>
 	))
 
 	return (
-		<div>
+		<section>
 			<h1 className='text-white'>Col Name</h1>
-			{tasksToShow}
+			<ul>{tasksToShow}</ul>
 			<button
 				type='button'
 				className='text-green-600'
-				onClick={addTaskHandler}>
+				onClick={addEmptyTask}>
 				+
 			</button>
-		</div>
+		</section>
 	)
 }
 
