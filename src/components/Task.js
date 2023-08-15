@@ -1,20 +1,12 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 import Card from './Card'
 import LikeButton from './LikeButton'
 
 const Task = props => {
-	const [description, setDescription] = useState('')
-	const [likeCount, setLikeCount] = useState(0)
 	const descriptionRef = useRef()
 
-	const descriptionBlurHandler = () => {
-		setDescription(descriptionRef.current.value)
-	}
-
-	const likeClickHandler = () => {
-		setLikeCount(prevCount => prevCount + 1)
-	}
+	useEffect(() => {}, [])
 
 	return (
 		<Card>
@@ -22,11 +14,15 @@ const Task = props => {
 				className='p-2 rounded'
 				type='text'
 				placeholder='Description goes here ...'
+				value={props['description']}
 				ref={descriptionRef}
-				onBlur={descriptionBlurHandler}
+				onBlur={props.descriptionHandler}
 			/>
 			<div className='grid grid-flow-col grid-cols-2'>
-				<LikeButton likeCount={likeCount} onLike={likeClickHandler} />
+				<LikeButton
+					likeCount={props.likeCount}
+					onLike={props.likeHandler}
+				/>
 				<button className='p-1' type='button'>
 					Delete
 				</button>
