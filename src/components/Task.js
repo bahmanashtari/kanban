@@ -12,10 +12,6 @@ const Task = props => {
 		console.log(description)
 	}
 
-	const descriptionChagneHandler = () => {
-		console.log(descriptionRef.current.value)
-	}
-
 	return (
 		<Card>
 			<textarea
@@ -23,9 +19,7 @@ const Task = props => {
 				type='text'
 				placeholder='Description goes here ...'
 				ref={descriptionRef}
-				value={description}
 				onBlur={descriptionBlurHandler}
-				onChange={descriptionChagneHandler}
 			/>
 			<div className='grid grid-flow-col grid-cols-2'>
 				<LikeButton />
