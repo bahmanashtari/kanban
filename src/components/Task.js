@@ -5,11 +5,15 @@ import LikeButton from './LikeButton'
 
 const Task = props => {
 	const [description, setDescription] = useState('')
+	const [likeCount, setLikeCount] = useState(0)
 	const descriptionRef = useRef()
 
 	const descriptionBlurHandler = () => {
 		setDescription(descriptionRef.current.value)
-		console.log(description)
+	}
+
+	const likeClickHandler = () => {
+		setLikeCount(prevCount => prevCount + 1)
 	}
 
 	return (
@@ -22,7 +26,7 @@ const Task = props => {
 				onBlur={descriptionBlurHandler}
 			/>
 			<div className='grid grid-flow-col grid-cols-2'>
-				<LikeButton />
+				<LikeButton likeCount={likeCount} onLike={likeClickHandler} />
 				<button className='p-1' type='button'>
 					Delete
 				</button>
