@@ -54,7 +54,10 @@ const Task = props => {
 				value={taskDescription}
 				onChange={textChangeHandler}
 			/>
-			<div className='grid grid-flow-col grid-cols-2'>
+			<div
+				className={`grid grid-flow-col ${
+					hasDescription ? 'grid-cols-2' : 'grid-cols-1'
+				}`}>
 				{hasDescription && taskLikeBotton}
 				<button className='p-1' type='button' onClick={deleteHandler}>
 					Delete
