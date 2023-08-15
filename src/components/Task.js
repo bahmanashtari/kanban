@@ -10,8 +10,8 @@ const Task = props => {
 
 	useEffect(() => {
 		setTaskId(props.taskContent.id)
-		setTaskDescription(props.taskContent.taskDescription)
-	}, [props.taskContent.id, props.taskContent.taskDescription])
+		setTaskDescription(props.taskContent.description)
+	}, [props.taskContent.id, props.taskContent.description])
 
 	const blurHandler = () => {
 		descriptionRef.current.value
@@ -30,19 +30,14 @@ const Task = props => {
 	}
 
 	const textChangeHandler = event => {
-		setHasDescription(event.target.value)
+		setTaskDescription(event.target.value)
 	}
 
-	const taskButtons = (
-		<div className='grid grid-flow-col grid-cols-2'>
-			<LikeButton
-				onLike={likeClickHandler}
-				likeCount={props.taskContent.likeCount}
-			/>
-			<button className='p-1' type='button' onClick={deleteHandler}>
-				Delete
-			</button>
-		</div>
+	const taskLikeBotton = (
+		<LikeButton
+			onLike={likeClickHandler}
+			likeCount={props.taskContent.likeCount}
+		/>
 	)
 
 	return (
@@ -59,7 +54,12 @@ const Task = props => {
 				value={taskDescription}
 				onChange={textChangeHandler}
 			/>
-			{hasDescription && taskButtons}
+			<div className='grid grid-flow-col grid-cols-2'>
+				{hasDescription && taskLikeBotton}
+				<button className='p-1' type='button' onClick={deleteHandler}>
+					Delete
+				</button>
+			</div>
 		</li>
 	)
 }
