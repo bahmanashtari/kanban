@@ -39,6 +39,16 @@ const BoardSection = props => {
 		setTasks(updatedTasks)
 	}
 
+	const handleOnDragOver = event => {
+		event.preventDefault()
+	}
+
+	const handleOnDrop = event => {
+		const id = event.dataTransfer.getData('id')
+		const draggedTask = tasks.find(task => task.id === id)
+		setTasks([...tasks, draggedTask])
+	}
+
 	const tasksToShow = tasks.map(task => (
 		<Task
 			taskKey={task.id}
@@ -52,7 +62,9 @@ const BoardSection = props => {
 	return (
 		<section>
 			<h1 className='text-white'>{props.name}</h1>
-			<ul>{tasksToShow}</ul>
+			<ul onDragOver={handleOnDragOver} onDrop={handleOnDrop}>
+				{tasksToShow}
+			</ul>
 			<button
 				type='button'
 				className='text-green-600'

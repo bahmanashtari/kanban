@@ -40,10 +40,16 @@ const Task = props => {
 		/>
 	)
 
+	const handleOnDrag = (e, taskKey, taskDescription) => {
+		e.dataTransfer.setData('id', taskKey)
+	}
+
 	return (
 		<li
 			key={props.taskKey}
-			className='grid grid-flow-row grid-row-2 p-3 my-2 mx-1 max-w-sm rounded-lg shadow-lg bg-slate-400'>
+			className='grid grid-flow-row grid-row-2 p-3 my-2 mx-1 max-w-sm rounded-lg shadow-lg bg-slate-400'
+			draggable
+			onDragStart={e => handleOnDrag(e, props.taskKey)}>
 			<textarea
 				name='taskDescription'
 				className='p-2 rounded bg-slate-300'
