@@ -33,10 +33,12 @@ const MainBoard = props => {
 				<section className='h-10 align-text-top text-gray-400 font-bold text-2xl'>
 					{boardName}
 				</section>
-				<section>
-					<Filters />
-				</section>
-				<section className='h-full grid grid-flow-col'>
+				{sections.length > 0 && (
+					<section>
+						<Filters />
+					</section>
+				)}
+				<section className='grid grid-flow-col'>
 					{sections.length > 0 && sectionsToShow}
 					{sections.length === 0 && (
 						<CreateNewBoard onCreateBoard={createBoardHandler} />

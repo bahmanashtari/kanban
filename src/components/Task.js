@@ -13,11 +13,17 @@ const Task = props => {
 		setTaskDescription(props.taskContent.description)
 	}, [props.taskContent.id, props.taskContent.description])
 
-	const blurHandler = () => {
-		descriptionRef.current.value
-			? setHasDescription(true)
-			: setHasDescription(false)
+	const textChangeHandler = event => {
+		if (event.target.value) {
+			setHasDescription(true)
+			setTaskDescription(event.target.value)
+		} else {
+			setHasDescription(false)
+			setTaskDescription('')
+		}
+	}
 
+	const blurHandler = () => {
 		props.onDescription(taskId, descriptionRef.current.value)
 	}
 
@@ -27,10 +33,6 @@ const Task = props => {
 
 	const deleteHandler = () => {
 		props.onDelete(taskId)
-	}
-
-	const textChangeHandler = event => {
-		setTaskDescription(event.target.value)
 	}
 
 	const taskLikeBotton = (
