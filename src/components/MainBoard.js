@@ -11,10 +11,10 @@ const initialState = {
 	sortBy: null, // votes
 	sections: [
 		// {
-		//   sectionKey: 'sectionID',
+		//   key: 'sectionID',
 		//   sectionName: 'secionName',
 		//   tasks: [
-		//     { taskKey: 'taskID', description: 'taskDescription', likes: 0, createDate: 'DateTime' },
+		//     { key: 'taskID', description: 'taskDescription', likes: 0, createDate: 'DateTime' },
 		//     { ... }, ...
 		//   ],
 		// },
@@ -33,7 +33,7 @@ const MainBoard = () => {
 				boardName,
 				sections: Object.entries(boardDetails).reduce((acc, [key, val]) => {
 					if (key.startsWith('sectionName_')) {
-						acc = [...acc, { sectionKey: key, sectionName: val, task: [] }]
+						acc = [...acc, { sectionKey: key, sectionName: val, tasks: [] }]
 					}
 					return acc
 				}, []),
@@ -41,11 +41,42 @@ const MainBoard = () => {
 		})
 	}
 
+	const addEmptyTaskHandler = () => {
+		// const newEmptyTask = { id: counter.current, description: '', likeCount: 0 }
+		// setTasks(prevTasks => [...prevTasks, newEmptyTask])
+		// counter.current++
+	}
+
+	const addDescriptionHandler = (taskId, description) => {
+		// const updatedTasks = tasks.map(task => {
+		// 	if (task.id === taskId) {
+		// 		return { ...task, description: description }
+		// 	}
+		// 	return task
+		// })
+		// setTasks(updatedTasks)
+	}
+
+	const likeHandler = taskId => {
+		// const updatedTasks = tasks.map(task => {
+		// 	if (task.id === taskId) {
+		// 		return { ...task, likeCount: task.likeCount + 1 }
+		// 	}
+		// 	return task
+		// })
+		// setTasks(updatedTasks)
+	}
+
+	const deleteHandler = taskId => {
+		// const updatedTasks = tasks.filter(task => task.id !== taskId)
+		// setTasks(updatedTasks)
+	}
+
 	return (
 		<div className='bg-zinc-700 flex items-center justify-center h-screen'>
 			<div className='bg-slate-700 shadow-2xl rounded-lg p-8 w-5/6 h-4/5'>
 				<section className='h-10 align-text-top text-gray-400 font-bold text-2xl'>
-					{globalState.baordname}
+					{globalState.boardName}
 				</section>
 				{globalState.sections.length > 0 && (
 					<section>
@@ -61,7 +92,11 @@ const MainBoard = () => {
 							<BoardSection
 								sectionName={section.sectionName}
 								key={section.sectionKey}
-								tasks={section.sectionTasks}
+								tasks={section.tasks}
+								onAddEmptyTask={addEmptyTaskHandler}
+								onAddDescription={addDescriptionHandler}
+								onLike={likeHandler}
+								onDelete={deleteHandler}
 							/>
 						))}
 				</section>
