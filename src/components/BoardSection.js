@@ -2,7 +2,6 @@ import Task from './Task'
 
 const BoardSection = ({
 	sectionName,
-	key,
 	tasks,
 	onAddEmptyTask,
 	onAddDescription,
