@@ -18,27 +18,6 @@ const CreateNewBoard = ({ onCreateBoard }) => {
 		onCreateBoard(formJson)
 	}
 
-	//   let sectionNameInputs = [];
-	//   for (let i = 0; i < sectionCount; i++) {
-	//     sectionNameInputs = [
-	//       ...sectionNameInputs,
-	//       <section
-	//         className="grid grid-flow-col grid-cols-2 space-x-20 p-5 bg-slate-800 rounded-xl"
-	//         key={`nameInput${i}`}
-	//       >
-	//         <label htmlFor={`sectionName_${i}`} className="text-white">
-	//           Enter section's name
-	//         </label>
-	//         <input
-	//           className="w-3/12 rounded text-center"
-	//           type="text"
-	//           name={`sectionName_${i}`}
-	//           id={`sectionName_${i}`}
-	//         />
-	//       </section>,
-	//     ];
-	//   };
-
 	const sectionNameInputs = [...Array(sectionCount)].map((_, i) => (
 		<section
 			className='grid grid-flow-col grid-cols-2 space-x-20 p-5 bg-slate-800 rounded-xl'

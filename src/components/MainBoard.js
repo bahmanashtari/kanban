@@ -11,10 +11,10 @@ const initialState = {
 	sortBy: null, // votes
 	sections: [
 		// {
-		//   sectionKey: "sectionID",
-		//   sectionName: "secionName",
+		//   sectionKey: 'sectionID',
+		//   sectionName: 'secionName',
 		//   tasks: [
-		//     { taskKey: "id1", description: "some text", like: 0, createDate: "" },
+		//     { taskKey: 'taskID', description: 'taskDescription', likes: 0, createDate: 'DateTime' },
 		//     { ... }, ...
 		//   ],
 		// },
@@ -60,8 +60,8 @@ const MainBoard = () => {
 						globalState.sections.map(section => (
 							<BoardSection
 								sectionName={section.sectionName}
-								secitonKey={section.sectionKey}
-								sectionTasks={section.sectionTasks}
+								key={section.sectionKey}
+								tasks={section.sectionTasks}
 							/>
 						))}
 				</section>
