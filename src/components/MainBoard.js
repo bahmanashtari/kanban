@@ -5,7 +5,7 @@ import Filters from './Filters'
 import CreateNewBoard from './CreateNewBoard'
 
 const initialState = {
-	baordname: '',
+	boardName: '',
 	searchKey: '',
 	viewSections: null, // sectionID
 	sortBy: null, // votes
@@ -33,7 +33,7 @@ const MainBoard = () => {
 				boardName,
 				sections: Object.entries(boardDetails).reduce((acc, [key, val]) => {
 					if (key.startsWith('sectionName_')) {
-						acc = [...acc, { sectionKey: key, sectionName: val, tasks: [] }]
+						acc = [...acc, { key, sectionName: val, tasks: [] }]
 					}
 					return acc
 				}, []),
@@ -91,7 +91,7 @@ const MainBoard = () => {
 						globalState.sections.map(section => (
 							<BoardSection
 								sectionName={section.sectionName}
-								key={section.sectionKey}
+								key={section.key}
 								tasks={section.tasks}
 								onAddEmptyTask={addEmptyTaskHandler}
 								onAddDescription={addDescriptionHandler}
