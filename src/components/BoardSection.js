@@ -24,8 +24,9 @@ const BoardSection = ({
 			<ul>
 				{tasks.map(task => (
 					<Task
-						key={task.key}
-						taskId={task.Id}
+						key={`${sectionId}_${task.taskId}`}
+						taskId={`${sectionId}_${task.taskId}`}
+						sectionId={sectionId}
 						taskDescription={task.taskDescription}
 						onAddDescription={onAddDescription}
 						onLike={onLike}

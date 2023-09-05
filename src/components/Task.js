@@ -2,47 +2,37 @@ import { useState, useRef, useEffect } from 'react'
 
 import LikeButton from './LikeButton'
 
-const Task = ({ taskDescription, onAddDescription, onLike, onDelete, taskId }) => {
-	const [id, setId] = useState()
-	const [description, setDescription] = useState('')
-	const [isEditable, setEditable] = useState(false)
+const Task = ({ taskDescription, onAddDescription, onLike, onDelete, taskId, sectionId }) => {
 	const [hasDescription, setHasDescription] = useState(false)
 	const descriptionRef = useRef()
-
-	useEffect(() => {
-		setId(taskId)
-		setDescription(taskDescription)
-	}, [taskId, taskDescription])
 
 	const textChangeHandler = event => {
 		if (event.target.value) {
 			setHasDescription(true)
-			setDescription(event.target.value)
 		} else {
 			setHasDescription(false)
-			setDescription('')
 		}
 	}
 
 	const blurHandler = () => {
-		onAddDescription(id, descriptionRef.current.value)
-		setEditable(false)
+		onAddDescription(sectionId, taskId, descriptionRef.current.value)
+		setHasDescription(false)
 	}
 
 	const likeClickHandler = () => {
-		onLike(id)
+		onLike(sectionId, taskId)
 	}
 
 	const deleteHandler = () => {
-		onDelete(id)
+		onDelete(sectionId, taskId)
 	}
 
 	return (
 		<li
-			key={id}
+			key={taskId}
 			className='grid grid-flow-row grid-row-2 p-3 my-2 mx-1 max-w-sm rounded-lg shadow-lg bg-slate-400'
 		>
-			{isEditable ? (
+			{hasDescription ? (
 				<textarea
 					name='taskDescription'
 					className='p-2 rounded bg-slate-300'
@@ -54,7 +44,7 @@ const Task = ({ taskDescription, onAddDescription, onLike, onDelete, taskId }) =
 					onChange={textChangeHandler}
 				/>
 			) : (
-				<p onClick={() => setEditable(true)}>{taskDescription || '...'}</p>
+				<p onClick={() => setHasDescription(true)}>{taskDescription || '...'}</p>
 			)}
 			<div className={`grid grid-flow-col ${hasDescription ? 'grid-cols-2' : 'grid-cols-1'}`}>
 				{hasDescription && <LikeButton onLike={onLike} />}

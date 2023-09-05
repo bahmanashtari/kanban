@@ -34,7 +34,10 @@ const MainBoard = () => {
 				boardName,
 				sections: Object.entries(boardDetails).reduce((acc, [key, val]) => {
 					if (key.startsWith('sectionName_')) {
-						acc = [...acc, { key, sectionName: val, tasks: [] }]
+						acc = [
+							...acc,
+							{ key, sectionId: `${val}_${key}`, sectionName: val, tasks: [] },
+						]
 					}
 					return acc
 				}, []),
@@ -42,26 +45,29 @@ const MainBoard = () => {
 		})
 	}
 
-	const addEmptyTaskHandler = (sectionId, tasksId) => {
+	const addEmptyTaskHandler = (sectionId, taskId) => {
 		const updatedSections = globalState.sections.map(section => {
 			if (section.key === sectionId) {
 				section.tasks = [
 					...section.tasks,
-					{ key: tasksId, description: '', likes: 0, createdDate: new Date() },
+					{ key: taskId, taskId, description: '', likes: 0, createdDate: new Date() },
 				]
 			}
 		})
-		setGlobalState(updatedSections)
+		setGlobalState(currentGlobalState => {
+			return { ...currentGlobalState, sections: updatedSections }
+		})
 	}
 
-	const addDescriptionHandler = (taskId, description) => {
-		// const updatedTasks = tasks.map(task => {
-		// 	if (task.id === taskId) {
-		// 		return { ...task, description: description }
-		// 	}
-		// 	return task
-		// })
-		// setTasks(updatedTasks)
+	const addDescriptionHandler = (sectionId, taskId, taskDescription) => {
+		console.log(1, sectionId, taskId, taskDescription)
+		let updatingSection = globalState.sections.find(section => section.sectionId === sectionId)
+		console.log(globalState)
+		updatingSection.tasks.forEach(task => {
+			if (task.taskId === taskId) {
+				task.description = taskDescription
+			}
+		})
 	}
 
 	const likeHandler = taskId => {
