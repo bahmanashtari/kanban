@@ -11,11 +11,10 @@ const initialState = {
 	sortBy: null, // votes
 	sections: [
 		// {
-		//   key: 'sectionID',
 		//   sectionId: 'sectionID',
 		//   sectionName: 'secionName',
 		//   tasks: [
-		//     { key: 'taskID', taskId: 'taskId', description: 'taskDescription', likes: 0, createDate: 'DateTime' },
+		//     { taskId: 'taskId', description: 'taskDescription', likes: 0, createDate: 'DateTime' },
 		//     { ... }, ...
 		//   ],
 		// },
@@ -34,10 +33,7 @@ const MainBoard = () => {
 				boardName,
 				sections: Object.entries(boardDetails).reduce((acc, [key, val]) => {
 					if (key.startsWith('sectionName_')) {
-						acc = [
-							...acc,
-							{ key, sectionId: `${val}_${key}`, sectionName: val, tasks: [] },
-						]
+						acc = [...acc, { sectionId: `${key}_${val}`, sectionName: val, tasks: [] }]
 					}
 					return acc
 				}, []),
@@ -60,9 +56,9 @@ const MainBoard = () => {
 	}
 
 	const addDescriptionHandler = (sectionId, taskId, taskDescription) => {
-		console.log(1, sectionId, taskId, taskDescription)
+		console.log(2, sectionId, taskId, taskDescription)
 		let updatingSection = globalState.sections.find(section => section.sectionId === sectionId)
-		console.log(globalState)
+		console.log(3, globalState)
 		updatingSection.tasks.forEach(task => {
 			if (task.taskId === taskId) {
 				task.description = taskDescription
