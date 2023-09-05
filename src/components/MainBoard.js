@@ -33,7 +33,10 @@ const MainBoard = () => {
 				boardName,
 				sections: Object.entries(boardDetails).reduce((acc, [key, val]) => {
 					if (key.startsWith('sectionName_')) {
-						acc = [...acc, { sectionId: `${key}_${val}`, sectionName: val, tasks: [] }]
+						acc = [
+							...acc,
+							{ key: key, sectionId: `${key}`, sectionName: val, tasks: [] },
+						]
 					}
 					return acc
 				}, []),
@@ -42,6 +45,7 @@ const MainBoard = () => {
 	}
 
 	const addEmptyTaskHandler = (sectionId, taskId) => {
+		console.log(1, globalState)
 		const updatedSections = globalState.sections.map(section => {
 			if (section.key === sectionId) {
 				section.tasks = [
@@ -97,18 +101,21 @@ const MainBoard = () => {
 						<CreateNewBoard onCreateBoard={createBoardHandler} />
 					)}
 					{globalState.sections.length > 0 &&
-						globalState.sections.map(section => (
-							<BoardSection
-								sectionName={section.sectionName}
-								key={section.key}
-								sectionId={section.key}
-								tasks={section.tasks}
-								onAddEmptyTask={addEmptyTaskHandler}
-								onAddDescription={addDescriptionHandler}
-								onLike={likeHandler}
-								onDelete={deleteHandler}
-							/>
-						))}
+						globalState.sections.map(section => {
+							console.log(5, section)
+							return (
+								<BoardSection
+									sectionName={section.sectionName}
+									key={section.key}
+									sectionId={section.key}
+									tasks={section.tasks}
+									onAddEmptyTask={addEmptyTaskHandler}
+									onAddDescription={addDescriptionHandler}
+									onLike={likeHandler}
+									onDelete={deleteHandler}
+								/>
+							)
+						})}
 				</section>
 			</div>
 		</div>
