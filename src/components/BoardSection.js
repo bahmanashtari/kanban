@@ -23,10 +23,9 @@ const BoardSection = ({
 			<h1 className='text-white'>{sectionName}</h1>
 			<ul>
 				{tasks.map(task => (
-					const taskId 
 					<Task
 						key={task.key}
-						taskId={}
+						taskId={task.Id}
 						taskDescription={task.taskDescription}
 						onAddDescription={onAddDescription}
 						onLike={onLike}
