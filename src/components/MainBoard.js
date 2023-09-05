@@ -12,9 +12,10 @@ const initialState = {
 	sections: [
 		// {
 		//   key: 'sectionID',
+		//   sectionId: 'sectionID',
 		//   sectionName: 'secionName',
 		//   tasks: [
-		//     { key: 'taskID', description: 'taskDescription', likes: 0, createDate: 'DateTime' },
+		//     { key: 'taskID', taskId: 'taskId', description: 'taskDescription', likes: 0, createDate: 'DateTime' },
 		//     { ... }, ...
 		//   ],
 		// },
@@ -41,10 +42,16 @@ const MainBoard = () => {
 		})
 	}
 
-	const addEmptyTaskHandler = () => {
-		// const newEmptyTask = { id: counter.current, description: '', likeCount: 0 }
-		// setTasks(prevTasks => [...prevTasks, newEmptyTask])
-		// counter.current++
+	const addEmptyTaskHandler = (sectionId, tasksId) => {
+		const updatedSections = globalState.sections.map(section => {
+			if (section.key === sectionId) {
+				section.tasks = [
+					...section.tasks,
+					{ key: tasksId, description: '', likes: 0, createdDate: new Date() },
+				]
+			}
+		})
+		setGlobalState(updatedSections)
 	}
 
 	const addDescriptionHandler = (taskId, description) => {
@@ -92,6 +99,7 @@ const MainBoard = () => {
 							<BoardSection
 								sectionName={section.sectionName}
 								key={section.key}
+								sectionId={section.key}
 								tasks={section.tasks}
 								onAddEmptyTask={addEmptyTaskHandler}
 								onAddDescription={addDescriptionHandler}
