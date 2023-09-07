@@ -1,75 +1,44 @@
-import { useState, useRef } from "react";
+import { useRef } from 'react'
 
-import Task from "./Task";
+import Task from './Task'
 
-const BoardSection = (props) => {
-  const counter = useRef(0);
-  const [tasks, setTasks] = useState([]);
+const BoardSection = ({
+	sectionName,
+	sectionId,
+	tasks,
+	onAddEmptyTask,
+	onAddDescription,
+	onLike,
+	onDelete,
+}) => {
+	const newestTaskId = useRef(0)
 
-  const addEmptyTask = () => {
-    const newEmptyTask = { id: counter.current, description: "", likeCount: 0 };
-    setTasks((prevTasks) => [...prevTasks, newEmptyTask]);
-    counter.current++;
-  };
+	const addTaskHandler = () => {
+		onAddEmptyTask(sectionId, newestTaskId.current)
+		newestTaskId.current++
+	}
 
-  const descriptionHandler = (taskId, description) => {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === taskId) {
-        return { ...task, description: description };
-      }
+	return (
+		<section>
+			<h1 className='text-white'>{sectionName}</h1>
+			<ul>
+				{tasks.map(task => (
+					<Task
+						key={task.taskId}
+						taskId={task.taskId}
+						sectionId={sectionId}
+						onAddDescription={onAddDescription}
+						onLike={onLike}
+						likeCount={task.likes}
+						onDelete={onDelete}
+					/>
+				))}
+			</ul>
+			<button type='button' className='text-green-600' onClick={addTaskHandler}>
+				+
+			</button>
+		</section>
+	)
+}
 
-      return task;
-    });
-    setTasks(updatedTasks);
-  };
-
-  const likeHandler = (taskId) => {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === taskId) {
-        return { ...task, likeCount: task.likeCount + 1 };
-      }
-
-      return task;
-    });
-    setTasks(updatedTasks);
-  };
-
-  const deleteHandler = (taskId) => {
-    const updatedTasks = tasks.filter((task) => task.id !== taskId);
-    setTasks(updatedTasks);
-  };
-
-  const handleOnDragOver = (event) => {
-    event.preventDefault();
-  };
-
-  const handleOnDrop = (event) => {
-    const id = event.dataTransfer.getData("id");
-    const draggedTask = tasks.find((task) => task.id === id);
-    setTasks([...tasks, draggedTask]);
-  };
-
-  const tasksToShow = tasks.map((task) => (
-    <Task
-      taskKey={task.id}
-      taskContent={task}
-      onDescription={descriptionHandler}
-      onLike={likeHandler}
-      onDelete={deleteHandler}
-    />
-  ));
-
-  return (
-    <section>
-      <h1 className="text-white">{props.name}</h1>
-      <ul onDragOver={handleOnDragOver} onDrop={handleOnDrop}>
-        {tasksToShow}
-      </ul>
-      <button type="button" className="text-green-600" onClick={addEmptyTask}>
-        +
-      </button>
-    </section>
-  );
-};
-
-export default BoardSection;
+export default BoardSection
