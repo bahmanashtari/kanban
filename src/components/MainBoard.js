@@ -45,7 +45,6 @@ const MainBoard = () => {
 	}
 
 	const addEmptyTaskHandler = (sectionId, taskId) => {
-		console.log(1, globalState)
 		const updatedSections = globalState.sections.map(section => {
 			if (section.key === sectionId) {
 				section.tasks = [
