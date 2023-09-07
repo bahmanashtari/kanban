@@ -2,7 +2,15 @@ import { useState, useRef } from 'react'
 
 import LikeButton from './LikeButton'
 
-const Task = ({ description, onAddDescription, onLike, onDelete, taskId, sectionId }) => {
+const Task = ({
+	description,
+	onAddDescription,
+	onLike,
+	likeCount,
+	onDelete,
+	taskId,
+	sectionId,
+}) => {
 	const [hasDescription, setHasDescription] = useState(false)
 	const descriptionRef = useRef()
 
@@ -17,10 +25,6 @@ const Task = ({ description, onAddDescription, onLike, onDelete, taskId, section
 	const blurHandler = () => {
 		onAddDescription(sectionId, taskId, descriptionRef.current.value)
 		setHasDescription(true)
-	}
-
-	const deleteHandler = () => {
-		onDelete(sectionId, taskId)
 	}
 
 	return (
@@ -43,8 +47,10 @@ const Task = ({ description, onAddDescription, onLike, onDelete, taskId, section
 				<p onClick={() => setHasDescription(true)}>{description || '...'}</p>
 			)}
 			<div className={`grid grid-flow-col ${hasDescription ? 'grid-cols-2' : 'grid-cols-1'}`}>
-				{hasDescription && <LikeButton onLike={() => onLike(sectionId, taskId)} />}
-				<button className='p-1' type='button' onClick={deleteHandler}>
+				{hasDescription && (
+					<LikeButton onLike={() => onLike(sectionId, taskId)} likeCount={likeCount} />
+				)}
+				<button className='p-1' type='button' onClick={() => onDelete(sectionId, taskId)}>
 					Delete
 				</button>
 			</div>

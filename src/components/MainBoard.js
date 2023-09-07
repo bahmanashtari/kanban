@@ -80,19 +80,29 @@ const MainBoard = () => {
 			}
 			return section
 		})
-		console.log(1, allSections)
 		setGlobalState(currentGlobalState => {
 			return { ...currentGlobalState, sections: allSections }
 		})
 	}
 
 	const likeHandler = (sectionId, taskId) => {
-		// let updatingSection = globalState.sections.find(section => section.sectionId === sectionId)
-		// updatingSection.tasks.forEach(task => {
-		// 	if (task.taskId === taskId) {
-		// 		task.likes += 1
-		// 	}
-		// })
+		let sectionWithUpdatedTask = globalState.sections.find(
+			section => section.sectionId === sectionId
+		)
+		sectionWithUpdatedTask.tasks.forEach(task => {
+			if (task.taskId === taskId) {
+				task.likes++
+			}
+		})
+		const allSections = globalState.sections.map(section => {
+			if (section.sectionId === sectionId) {
+				return sectionWithUpdatedTask
+			}
+			return section
+		})
+		setGlobalState(currentGlobalState => {
+			return { ...currentGlobalState, sections: allSections }
+		})
 	}
 
 	const deleteHandler = taskId => {

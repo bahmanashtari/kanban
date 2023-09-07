@@ -30,6 +30,7 @@ const BoardSection = ({
 						description={task.description}
 						onAddDescription={onAddDescription}
 						onLike={onLike}
+						likeCount={task.likes}
 						onDelete={onDelete}
 					/>
 				))}
