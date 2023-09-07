@@ -27,7 +27,6 @@ const BoardSection = ({
 						key={task.taskId}
 						taskId={task.taskId}
 						sectionId={sectionId}
-						description={task.description}
 						onAddDescription={onAddDescription}
 						onLike={onLike}
 						likeCount={task.likes}

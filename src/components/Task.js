@@ -2,17 +2,10 @@ import { useState, useRef } from 'react'
 
 import LikeButton from './LikeButton'
 
-const Task = ({
-	description,
-	onAddDescription,
-	onLike,
-	likeCount,
-	onDelete,
-	taskId,
-	sectionId,
-}) => {
+const Task = ({ onAddDescription, onLike, likeCount, onDelete, taskId, sectionId }) => {
 	const [hasDescription, setHasDescription] = useState(false)
 	const descriptionRef = useRef()
+	let description
 
 	const textChangeHandler = event => {
 		if (event.target.value) {

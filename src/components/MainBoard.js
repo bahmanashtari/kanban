@@ -105,9 +105,11 @@ const MainBoard = () => {
 		})
 	}
 
-	const deleteHandler = taskId => {
-		// const updatedTasks = tasks.filter(task => task.id !== taskId)
-		// setTasks(updatedTasks)
+	const deleteHandler = (sectionId, taskId) => {
+		// let sectionToDeleteTaskFrom = globalState.sections.find(
+		// 	section => section.sectionId === sectionId
+		// )
+		// const sectionWithDeletedTask = sectionToDeleteTaskFrom.tasks.filter(task => task.taskId === taskId)
 	}
 
 	return (
