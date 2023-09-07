@@ -74,16 +74,16 @@ const MainBoard = () => {
 				task.description = taskDescription
 			}
 		})
-		console.log(2, sectionWithUpdatedTask)
 		const allSections = globalState.sections.map(section => {
 			if (section.sectionId === sectionId) {
 				return sectionWithUpdatedTask
 			}
 			return section
 		})
-		// setGlobalState(currentGlobalState => {
-		// 	return { ...currentGlobalState, sections: updatingSection }
-		// })
+		console.log(1, allSections)
+		setGlobalState(currentGlobalState => {
+			return { ...currentGlobalState, sections: allSections }
+		})
 	}
 
 	const likeHandler = (sectionId, taskId) => {
@@ -117,7 +117,6 @@ const MainBoard = () => {
 					)}
 					{globalState.sections.length > 0 &&
 						globalState.sections.map(section => {
-							// console.log('mb', section.tasks)
 							return (
 								<BoardSection
 									sectionName={section.sectionName}

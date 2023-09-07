@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 
 import LikeButton from './LikeButton'
 
-const Task = ({ taskDescription, onAddDescription, onLike, onDelete, taskId, sectionId }) => {
+const Task = ({ description, onAddDescription, onLike, onDelete, taskId, sectionId }) => {
 	const [hasDescription, setHasDescription] = useState(false)
 	const descriptionRef = useRef()
 
@@ -36,11 +36,11 @@ const Task = ({ taskDescription, onAddDescription, onLike, onDelete, taskId, sec
 					placeholder='Description goes here ...'
 					ref={descriptionRef}
 					onBlur={blurHandler}
-					value={taskDescription}
+					value={description}
 					onChange={textChangeHandler}
 				/>
 			) : (
-				<p onClick={() => setHasDescription(true)}>{taskDescription || '...'}</p>
+				<p onClick={() => setHasDescription(true)}>{description || '...'}</p>
 			)}
 			<div className={`grid grid-flow-col ${hasDescription ? 'grid-cols-2' : 'grid-cols-1'}`}>
 				{hasDescription && <LikeButton onLike={() => onLike(sectionId, taskId)} />}
