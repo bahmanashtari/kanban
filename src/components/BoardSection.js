@@ -14,8 +14,8 @@ const BoardSection = ({
 	const [newestTaskId, setNewestTaskId] = useState(0)
 
 	const addTaskHandler = () => {
-		onAddEmptyTask(sectionId, newestTaskId)
 		setNewestTaskId(newestTaskId => newestTaskId++)
+		onAddEmptyTask(sectionId, newestTaskId)
 	}
 
 	return (

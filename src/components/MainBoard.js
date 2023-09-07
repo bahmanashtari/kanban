@@ -60,9 +60,7 @@ const MainBoard = () => {
 	}
 
 	const addDescriptionHandler = (sectionId, taskId, taskDescription) => {
-		console.log(2, sectionId, taskId, taskDescription)
 		let updatingSection = globalState.sections.find(section => section.sectionId === sectionId)
-		console.log(3, globalState)
 		updatingSection.tasks.forEach(task => {
 			if (task.taskId === taskId) {
 				task.description = taskDescription
@@ -102,7 +100,6 @@ const MainBoard = () => {
 					)}
 					{globalState.sections.length > 0 &&
 						globalState.sections.map(section => {
-							console.log(5, section)
 							return (
 								<BoardSection
 									sectionName={section.sectionName}
