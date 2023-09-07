@@ -15,7 +15,6 @@ const Task = ({ taskDescription, onAddDescription, onLike, onDelete, taskId, sec
 	}
 
 	const blurHandler = () => {
-		// console.log('task', taskId)
 		onAddDescription(sectionId, taskId, descriptionRef.current.value)
 		setHasDescription(true)
 	}

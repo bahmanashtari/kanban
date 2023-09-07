@@ -25,7 +25,7 @@ const BoardSection = ({
 				{tasks.map(task => (
 					<Task
 						key={task.taskId}
-						taskId={task.tas}
+						taskId={task.taskId}
 						sectionId={sectionId}
 						taskDescription={task.taskDescription}
 						onAddDescription={onAddDescription}
