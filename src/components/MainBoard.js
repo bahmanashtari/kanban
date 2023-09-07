@@ -52,6 +52,7 @@ const MainBoard = () => {
 					{ key: taskId, taskId, description: '', likes: 0, createdDate: new Date() },
 				]
 			}
+			return section
 		})
 		setGlobalState(currentGlobalState => {
 			return { ...currentGlobalState, sections: updatedSections }
