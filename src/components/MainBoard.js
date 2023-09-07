@@ -45,7 +45,7 @@ const MainBoard = () => {
 	}
 
 	const addEmptyTaskHandler = (sectionId, taskId) => {
-		const updatingSection = globalState.sections.map(section => {
+		const sectionWithNewTask = globalState.sections.map(section => {
 			if (section.sectionId === sectionId) {
 				section.tasks = [
 					...section.tasks,
@@ -61,16 +61,29 @@ const MainBoard = () => {
 			return section
 		})
 		setGlobalState(currentGlobalState => {
-			return { ...currentGlobalState, sections: updatingSection }
+			return { ...currentGlobalState, sections: sectionWithNewTask }
 		})
 	}
 
 	const addDescriptionHandler = (sectionId, taskId, taskDescription) => {
-		console.log(1, sectionId, taskId, taskDescription)
-		let updatingSection = globalState.sections.find(section => section.sectionId === sectionId)
-		console.log(2, updatingSection)
-		let updatingTask = updatingSection.tasks.find(task => task.taskId === taskId)
-		console.log(3, updatingTask)
+		// console.log(-1, sectionId, taskId)
+		let sectionWithUpdatedTask = globalState.sections.find(
+			section => section.sectionId === sectionId
+		)
+		sectionWithUpdatedTask.tasks.forEach(task => {
+			// console.log(0, task.taskId, taskId)
+			if (task.taskId === taskId) {
+				task.description = taskDescription
+				// console.log(1, task.description)
+			}
+		})
+		// console.log(2, sectionWithUpdatedTask)
+		const allSections = globalState.sections.map(section => {
+			if (section.sectionId === sectionId) {
+				return sectionWithUpdatedTask
+			}
+			return section
+		})
 		// setGlobalState(currentGlobalState => {
 		// 	return { ...currentGlobalState, sections: updatingSection }
 		// })
@@ -107,6 +120,7 @@ const MainBoard = () => {
 					)}
 					{globalState.sections.length > 0 &&
 						globalState.sections.map(section => {
+							// console.log('mb', section.tasks)
 							return (
 								<BoardSection
 									sectionName={section.sectionName}
