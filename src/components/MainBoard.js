@@ -60,6 +60,7 @@ const MainBoard = () => {
 	}
 
 	const addDescriptionHandler = (sectionId, taskId, taskDescription) => {
+		console.log(1, sectionId, taskId, taskDescription)
 		let updatingSection = globalState.sections.find(section => section.sectionId === sectionId)
 		updatingSection.tasks.forEach(task => {
 			if (task.taskId === taskId) {

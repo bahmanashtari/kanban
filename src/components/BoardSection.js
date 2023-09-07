@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef } from 'react'
 
 import Task from './Task'
 
@@ -11,11 +11,11 @@ const BoardSection = ({
 	onLike,
 	onDelete,
 }) => {
-	const [newestTaskId, setNewestTaskId] = useState(0)
+	const newestTaskId = useRef(0)
 
 	const addTaskHandler = () => {
-		setNewestTaskId(newestTaskId => newestTaskId++)
-		onAddEmptyTask(sectionId, newestTaskId)
+		onAddEmptyTask(sectionId, newestTaskId.current)
+		newestTaskId.current++
 	}
 
 	return (
