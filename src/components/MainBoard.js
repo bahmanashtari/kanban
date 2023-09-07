@@ -46,7 +46,7 @@ const MainBoard = () => {
 
 	const addEmptyTaskHandler = (sectionId, taskId) => {
 		const updatedSections = globalState.sections.map(section => {
-			if (section.key === sectionId) {
+			if (section.sectionId === sectionId) {
 				section.tasks = [
 					...section.tasks,
 					{ key: taskId, taskId, description: '', likes: 0, createdDate: new Date() },
@@ -60,23 +60,24 @@ const MainBoard = () => {
 	}
 
 	const addDescriptionHandler = (sectionId, taskId, taskDescription) => {
-		console.log(1, sectionId, taskId, taskDescription)
-		let updatingSection = globalState.sections.find(section => section.sectionId === sectionId)
-		updatingSection.tasks.forEach(task => {
-			if (task.taskId === taskId) {
-				task.description = taskDescription
-			}
-		})
+		// let updatingSection = globalState.sections.find(section => section.sectionId === sectionId)
+		// updatingSection.tasks.forEach(task => {
+		// 	if (task.taskId === taskId) {
+		// 		task.description = taskDescription
+		// 	}
+		// })
+		// setGlobalState(currentGlobalState => {
+		// 	return { ...currentGlobalState, sections: updatingSection }
+		// })
 	}
 
-	const likeHandler = taskId => {
-		// const updatedTasks = tasks.map(task => {
-		// 	if (task.id === taskId) {
-		// 		return { ...task, likeCount: task.likeCount + 1 }
+	const likeHandler = (sectionId, taskId) => {
+		// let updatingSection = globalState.sections.find(section => section.sectionId === sectionId)
+		// updatingSection.tasks.forEach(task => {
+		// 	if (task.taskId === taskId) {
+		// 		task.likes += 1
 		// 	}
-		// 	return task
 		// })
-		// setTasks(updatedTasks)
 	}
 
 	const deleteHandler = taskId => {

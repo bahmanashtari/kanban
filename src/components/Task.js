@@ -19,10 +19,6 @@ const Task = ({ taskDescription, onAddDescription, onLike, onDelete, taskId, sec
 		setHasDescription(true)
 	}
 
-	const likeClickHandler = () => {
-		onLike(sectionId, taskId)
-	}
-
 	const deleteHandler = () => {
 		onDelete(sectionId, taskId)
 	}
@@ -47,7 +43,7 @@ const Task = ({ taskDescription, onAddDescription, onLike, onDelete, taskId, sec
 				<p onClick={() => setHasDescription(true)}>{taskDescription || '...'}</p>
 			)}
 			<div className={`grid grid-flow-col ${hasDescription ? 'grid-cols-2' : 'grid-cols-1'}`}>
-				{hasDescription && <LikeButton onLike={onLike} />}
+				{hasDescription && <LikeButton onLike={() => onLike(sectionId, taskId)} />}
 				<button className='p-1' type='button' onClick={deleteHandler}>
 					Delete
 				</button>
